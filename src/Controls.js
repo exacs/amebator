@@ -38,11 +38,12 @@ function Knob ({ id, top, left }) {
 export default function Controls ({ points, movePoint }) {
   const [, drop] = useDrop({
     accept: ItemType,
-    drop: (item, monitor) => {
+    hover: (item, monitor) => {
       const delta = monitor.getDifferenceFromInitialOffset()
       const left = Math.round(item.left + delta.x)
       const top = Math.round(item.top + delta.y)
 
+      // console.log(item.id, left, top)
       movePoint(item.id, [left, top])
     }
   })
