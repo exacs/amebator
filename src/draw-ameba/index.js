@@ -4,7 +4,12 @@ function drawArc (ctx, center, radius, start, end, antiClockwise) {
   const startAngle = Math.atan2(start[1] - center[1], start[0] - center[0])
   const endAngle = Math.atan2(end[1] - center[1], end[0] - center[0])
 
-  ctx.arc(center[0], center[1], radius, startAngle, endAngle, antiClockwise)
+  try {
+    ctx.arc(center[0], center[1], radius, startAngle, endAngle, antiClockwise)
+    return true
+  } catch (err) {
+    return false
+  }
 }
 
 export default function drawAmeba (ctx, points, firstRadius, lastRadius) {
