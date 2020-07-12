@@ -32,7 +32,6 @@ export default function drawAmeba (ctx, points, firstRadius, lastRadius) {
   const allPoints = points.concat([[lastPoint.x, lastPoint.y]])
   radii.push(lastRadius)
 
-  // ctx.strokeStyle = 'black'
   ctx.beginPath()
   let result = !isNaN(lastPoint.x) && !isNaN(lastPoint.y)
 

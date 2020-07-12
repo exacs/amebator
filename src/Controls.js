@@ -43,7 +43,6 @@ export default function Controls ({ points, movePoint }) {
       const left = Math.round(item.left + delta.x)
       const top = Math.round(item.top + delta.y)
 
-      // console.log(item.id, left, top)
       movePoint(item.id, [left, top])
     }
   })
