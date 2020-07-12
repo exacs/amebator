@@ -38,7 +38,8 @@ function defaultPoints (amount) {
 }
 
 function App() {
-  const [points, setPoints] = useState(defaultPoints(1))
+  const [amount, setAmount] = useState(1)
+  const [points, setPoints] = useState(defaultPoints(amount))
   const [firstRadius, setFirstRadius] = useState(75)
   const [lastRadius, setLastRadius] = useState(75)
 
@@ -48,6 +49,11 @@ function App() {
 
       return coords
     }))
+  }
+
+  function setAmountAndPoints (amount) {
+    setAmount(amount)
+    setPoints(defaultPoints(amount))
   }
 
   const data = {
@@ -64,6 +70,11 @@ function App() {
           <DndProvider backend={HTML5Backend}>
             <Controls points={points} movePoint={movePoint} />
           </DndProvider>
+        </div>
+        <div style={{width: '320px'}}>
+          Number of points: {amount * 2 + 1}
+          <button onClick={() => setAmountAndPoints(amount+1)}>+</button>
+          <button onClick={() => setAmountAndPoints(amount-1)}>-</button>
         </div>
         <div style={{width: '320px'}}>
           <Slider value={firstRadius} onChange={setFirstRadius}>First radius</Slider>
