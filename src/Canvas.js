@@ -27,11 +27,11 @@ function useCanvas (callback) {
   return canvasRef
 }
 
-export default function Canvas ({ points }) {
+export default function Canvas ({ data }) {
   const canvasRef = useCanvas(ctx => {
 
     ctx.strokeStyle = 'white'
-    const result = drawAmeba(ctx, points, 70, 70)
+    const result = drawAmeba(ctx, data.points, data.firstRadius, data.lastRadius)
     if (result) {
       ctx.stroke()
     }
