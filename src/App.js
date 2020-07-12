@@ -1,4 +1,5 @@
 import React from 'react';
+import Canvas from './Canvas'
 import './App.css';
 
 function App() {
@@ -8,8 +9,7 @@ function App() {
         <div style={{padding: '32px'}}>
           Welcome to the amebator
         </div>
-        <canvas width="500" height="500" style={{border: '1px solid white'}}>Here is the Canvas</canvas>
-
+        <Canvas />
       </main>
     </div>
   );
