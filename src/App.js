@@ -18,7 +18,7 @@ function App() {
         </div>
         <div style={{position: 'relative'}}>
           <Canvas points={points} />
-          <Controls />
+          <Controls points={points} />
         </div>
       </main>
     </div>
