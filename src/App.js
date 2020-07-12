@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Canvas from './Canvas'
-import Controls from './Controls'
+import Canvas from './components/Canvas'
+import Controls from './components/Controls'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import './App.css';
@@ -21,12 +21,24 @@ function Slider ({ children, value, onChange}) {
   )
 }
 
+function defaultPoints (amount) {
+  const real = amount * 2 + 1
+  const increment = Math.PI * 2 / (real + 1)
+  const points = []
+
+  // Range 250 +/- 100
+  for (let i = 0; i < real; i++) {
+    points.push([
+      250 + 100 * Math.cos(increment * i),
+      250 + 100 * Math.sin(increment * i)
+    ])
+  }
+
+  return points
+}
+
 function App() {
-  const [points, setPoints] = useState([
-    [150, 150],
-    [300, 150],
-    [300, 375]
-  ])
+  const [points, setPoints] = useState(defaultPoints(1))
   const [firstRadius, setFirstRadius] = useState(75)
   const [lastRadius, setLastRadius] = useState(75)
 

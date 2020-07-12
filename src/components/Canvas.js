@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react'
-import drawAmeba from './draw-ameba'
+import drawAmeba from '../draw-ameba'
 
 function useCanvas (callback) {
   const canvasRef = useRef(null)
