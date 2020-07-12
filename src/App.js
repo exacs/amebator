@@ -1,5 +1,6 @@
 import React from 'react';
 import Canvas from './Canvas'
+import Controls from './Controls'
 import './App.css';
 
 function App() {
@@ -9,7 +10,10 @@ function App() {
         <div style={{padding: '32px'}}>
           Welcome to the amebator
         </div>
-        <Canvas />
+        <div style={{position: 'relative'}}>
+          <Canvas />
+          <Controls />
+        </div>
       </main>
     </div>
   );
