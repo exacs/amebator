@@ -3,22 +3,10 @@ import Canvas from "./Canvas";
 import Controls from "./Controls";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import PlusMinus from "./PlusMinus"
+import Slider from "./Slider"
+import "./Amebator.css"
 
-function Slider({ children, value, onChange }) {
-  return (
-    <div style={{ padding: "8px 0" }}>
-      <div style={{ textAlign: "left", padding: "4px" }}>{children}</div>
-      <input
-        type="range"
-        min="1"
-        max="100"
-        value={value}
-        className="slider"
-        onChange={(e) => onChange(parseInt(e.currentTarget.value, 10))}
-      />
-    </div>
-  );
-}
 
 function defaultPoints(amount) {
   const real = amount * 2 + 1;
@@ -64,28 +52,25 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <main className="App-header">
-        <div style={{ position: "relative" }}>
-          <Canvas data={data} />
-          <DndProvider backend={HTML5Backend}>
-            <Controls points={points} movePoint={movePoint} />
-          </DndProvider>
-        </div>
-        <div style={{ width: "320px" }}>
-          Number of points: {amount * 2 + 1}
-          <button onClick={() => setAmountAndPoints(amount + 1)}>+</button>
-          <button onClick={() => setAmountAndPoints(amount - 1)}>-</button>
-        </div>
-        <div style={{ width: "320px" }}>
-          <Slider value={firstRadius} onChange={setFirstRadius}>
-            First radius
-          </Slider>
-          <Slider value={lastRadius} onChange={setLastRadius}>
-            Last radius
-          </Slider>
-        </div>
-      </main>
+    <div className="Amebator">
+      <div className="Amebator-canvas-container">
+        <Canvas data={data} />
+        <DndProvider backend={HTML5Backend}>
+          <Controls points={points} movePoint={movePoint} />
+        </DndProvider>
+      </div>
+      <section className="Amebator-control">
+        <div className="Amebator-control-title">Number of points:</div>
+        <PlusMinus onSetAmount={setAmountAndPoints} amount={amount} />
+      </section>
+      <section className="Amebator-control">
+        <div className="Amebator-control-title">First radius:</div>
+        <Slider value={firstRadius} onChange={setFirstRadius} />
+      </section>
+      <section className="Amebator-control">
+        <div className="Amebator-control-title">Last radius:</div>
+        <Slider value={lastRadius} onChange={setLastRadius} />
+      </section>
     </div>
   );
 }

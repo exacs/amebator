@@ -1,0 +1,23 @@
+.PlusMinus {
+  padding: 16px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.PlusMinus-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  border: 0;
+  background-color: #e271e6;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.PlusMinus-value {
+  min-width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

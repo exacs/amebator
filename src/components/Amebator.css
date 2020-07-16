@@ -1,0 +1,18 @@
+.Amebator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Amebator-canvas-container {
+  position: relative;
+}
+
+.Amebator-control {
+  width: 320px;
+  padding: 16px 0;
+}
+
+.Amebator-control-title {
+  font-weight: 700;
+}
