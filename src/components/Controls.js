@@ -1,15 +1,9 @@
 import React from "react";
 import { useDrag, useDrop } from "react-dnd";
 
-const ItemType = "KNOB";
+import "./Knob.css";
 
-const knobStyle = {
-  position: "absolute",
-  border: "#fff 1px solid",
-  borderRadius: "100%",
-  width: "8px",
-  height: "8px",
-};
+const ItemType = "KNOB";
 
 function Knob({ id, top, left }) {
   const [{ isDragging }, drag] = useDrag({
@@ -20,18 +14,24 @@ function Knob({ id, top, left }) {
   });
 
   if (isDragging) {
-    return <div ref={drag} />;
+    return (
+      <div ref={drag} className="Knob">
+        <div className="Knob-handler" />
+      </div>
+    )
   }
 
   return (
     <div
       ref={drag}
+      className="Knob"
       style={{
-        ...knobStyle,
         top,
         left,
       }}
-    />
+    >
+      <div className="Knob-handler" />
+    </div>
   );
 }
 

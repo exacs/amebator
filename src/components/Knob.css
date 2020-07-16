@@ -1,0 +1,13 @@
+.Knob {
+  position: absolute
+}
+
+.Knob-handler {
+  position: absolute;
+  background: #e271e6;
+  border-radius: 100%;
+  width: 16px;
+  height: 16px;
+  top: -8px;
+  left: -8px;
+}
