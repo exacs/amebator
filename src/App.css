@@ -1,9 +1,14 @@
 .App-nav-container {
   height: 48px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .App-nav {
-  background-color: #000000;
+  background-color: #181c22;
   display: flex;
   height: 100%;
 }
@@ -17,21 +22,22 @@
 }
 
 .App-nav-link-selected {
-  background: #282c34;
+  background: #373c46;
 }
 
 .App {
   text-align: center;
 }
 
-.App-header {
+.App-body {
+  min-height: calc(100vh - 64px);
+  padding-top: 64px;
   background-color: #282c34;
-  min-height: 100vh;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
 }
 
 .App-link {
