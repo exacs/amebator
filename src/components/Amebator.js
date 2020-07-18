@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import Canvas from "./Canvas";
 import Controls from "./Controls";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import PlusMinus from "./PlusMinus"
 import Slider from "./Slider"
 import "./Amebator.css"
 
 
 function defaultPoints(amount) {
-  const real = amount * 2 + 1;
-  const increment = (Math.PI * 2) / (real + 1);
+  const increment = (Math.PI * 2) / (amount);
   const points = [];
 
   // Range 250 +/- 100
-  for (let i = 0; i < real; i++) {
+  for (let i = 0; i < amount; i++) {
     points.push([
       250 + 100 * Math.cos(increment * i),
       250 + 100 * Math.sin(increment * i),
@@ -55,9 +52,7 @@ function App() {
     <div className="Amebator">
       <div className="Amebator-canvas-container">
         <Canvas data={data} />
-        <DndProvider backend={HTML5Backend}>
-          <Controls points={points} movePoint={movePoint} />
-        </DndProvider>
+        <Controls points={points} movePoint={movePoint} />
       </div>
       <section className="Amebator-control">
         <div className="Amebator-control-title">Number of points:</div>
