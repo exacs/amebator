@@ -1,53 +1,43 @@
-import { getTangent, getMinusRadius } from "./geometry.js";
+import { intersection } from "./geometry.js";
 
-function drawArc(ctx, center, radius, start, end, antiClockwise) {
-  const startAngle = Math.atan2(start[1] - center[1], start[0] - center[0]);
-  const endAngle = Math.atan2(end[1] - center[1], end[0] - center[0]);
+export default function drawAmeba (ctx, circles, radii) {
+  const arcArgs = []
 
-  try {
-    ctx.arc(center[0], center[1], radius, startAngle, endAngle, antiClockwise);
-    return true;
-  } catch (err) {
-    return false;
-  }
-}
+  for (let i = 0; i < circles.length; i++) {
+    const circle0 = circles[i]
+    const circle1 = circles[(i + 1) % circles.length]
 
-export default function drawAmeba(ctx, points, firstRadius, lastRadius) {
-  const radii = [];
+    const point = intersection(
+      {x: circle0[0], y: circle0[1], r: circle0[2] + radii[i]},
+      {x: circle1[0], y: circle1[1], r: circle1[2] + radii[i]},
+      true
+    )
 
-  radii[0] = firstRadius;
-  for (let i = 1; i < points.length; i++) {
-    radii[i] = getMinusRadius(
-      { x: points[i][0], y: points[i][1] },
-      { x: points[i - 1][0], y: points[i - 1][1] },
-      radii[i - 1]
-    );
+    arcArgs.push(
+      [circle0[0], circle0[1], circle0[2]],
+      [point.x, point.y, radii[i]]
+    )
   }
 
-  const lastPoint = getTangent(
-    { x: points[0][0], y: points[0][1], r: firstRadius },
-    {
-      x: points[points.length - 1][0],
-      y: points[points.length - 1][1],
-      r: radii[radii.length - 1],
-    },
-    lastRadius
-  );
-  const allPoints = points.concat([[lastPoint.x, lastPoint.y]]);
-  radii.push(lastRadius);
+  for (let i = 0; i < arcArgs.length; i++) {
+    const point = arcArgs[i]
+    const p0 = arcArgs[(i-1 + arcArgs.length) % arcArgs.length]
+    const p1 = arcArgs[(i+1) % arcArgs.length]
 
-  ctx.beginPath();
-  let result = !isNaN(lastPoint.x) && !isNaN(lastPoint.y);
+    const l0 = [p0[0] - point[0], p0[1] - point[1]]
+    const l1 = [p1[0] - point[0], p1[1] - point[1]]
 
-  for (let i = 0; i < radii.length; i++) {
-    const center = allPoints[i];
-    const start = i === 0 ? allPoints[allPoints.length - 1] : allPoints[i - 1];
-    const end = i === radii.length - 1 ? allPoints[0] : allPoints[i + 1];
-    const clockwise = i % 2 === 0;
+    const a0 = Math.atan2(l0[1], l0[0])
+    const a1 = Math.atan2(l1[1], l1[0])
 
-    result = drawArc(ctx, center, radii[i], start, end, clockwise) && result;
+    arcArgs[i].push(a0, a1)
+    arcArgs[i].push(i % 2 === 1)
   }
-  ctx.closePath();
 
-  return result;
+  ctx.beginPath()
+  for (let arc of arcArgs) {
+    ctx.arc(...arc)
+  }
+  ctx.closePath()
+  ctx.stroke()
 }
