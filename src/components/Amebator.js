@@ -21,11 +21,14 @@ function defaultPoints(amount) {
   return points;
 }
 
+function defaultRadii (amount) {
+  return Array.from({ length: amount }, _ => 50)
+}
+
 function App() {
   const [amount, setAmount] = useState(1);
   const [points, setPoints] = useState(defaultPoints(amount));
-  const [firstRadius, setFirstRadius] = useState(75);
-  const [lastRadius, setLastRadius] = useState(75);
+  const [radii, setRadii] = useState(defaultRadii(amount));
 
   function movePoint(i, coords) {
     setPoints(
@@ -40,12 +43,16 @@ function App() {
   function setAmountAndPoints(amount) {
     setAmount(amount);
     setPoints(defaultPoints(amount));
+    setRadii(defaultRadii(amount))
   }
 
   const data = {
-    points,
-    firstRadius,
-    lastRadius,
+    circles: [
+      [80, 80, 50],
+      [220, 130, 70],
+      [100, 200, 40]
+    ],
+    radii: [70, 30, 50]
   };
 
   return (
@@ -57,14 +64,6 @@ function App() {
       <section className="Amebator-control">
         <div className="Amebator-control-title">Number of points:</div>
         <PlusMinus onSetAmount={setAmountAndPoints} amount={amount} />
-      </section>
-      <section className="Amebator-control">
-        <div className="Amebator-control-title">First radius:</div>
-        <Slider value={firstRadius} onChange={setFirstRadius} />
-      </section>
-      <section className="Amebator-control">
-        <div className="Amebator-control-title">Last radius:</div>
-        <Slider value={lastRadius} onChange={setLastRadius} />
       </section>
     </div>
   );
