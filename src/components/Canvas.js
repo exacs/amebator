@@ -32,9 +32,12 @@ export default function Canvas({ data }) {
     ctx.strokeStyle = "white";
     const result = drawAmeba(
       ctx,
-      data.points,
-      data.firstRadius,
-      data.lastRadius
+      [
+        [80, 80, 50],
+        [220, 130, 70],
+        [100, 200, 40]
+      ],
+      [70, 30, 50]
     );
     if (result) {
       ctx.stroke();
