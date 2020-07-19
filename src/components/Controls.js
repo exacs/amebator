@@ -17,28 +17,26 @@ function Knob({ x, y, onChange }) {
   );
 }
 
-function RadiusKnob ({ x, y, r, onChange }) {
-  const [angle, setAngle] = useState(0)
+function RadiusKnob({ x, y, r, onChange }) {
+  const [angle, setAngle] = useState(0);
 
-  function onDrag (e, position) {
-    const newRadius = Math.sqrt(
-      (x - position.x)**2 + (y - position.y)**2
-    )
-    const newAngle = Math.atan2(position.y - y, position.x - x)
-    setAngle(newAngle)
-    onChange(newRadius)
+  function onDrag(e, position) {
+    const newRadius = Math.sqrt((x - position.x) ** 2 + (y - position.y) ** 2);
+    const newAngle = Math.atan2(position.y - y, position.x - x);
+    setAngle(newAngle);
+    onChange(newRadius);
   }
 
   const position = {
     x: x + r * Math.cos(angle),
-    y: y + r * Math.sin(angle)
-  }
+    y: y + r * Math.sin(angle),
+  };
 
   return (
     <Draggable position={position} onDrag={onDrag}>
-      <div className='Knob-handler-2' />
+      <div className="Knob-handler-2" />
     </Draggable>
-  )
+  );
 }
 
 export default function Controls({ circles, moveCenter, changeRadius }) {

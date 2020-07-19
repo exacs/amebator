@@ -27,9 +27,9 @@ function App() {
 
   function changeRadius(i, r) {
     setData({
-      circles: replace(data.circles, i, {r}),
-      radii: data.radii
-    })
+      circles: replace(data.circles, i, { r }),
+      radii: data.radii,
+    });
   }
 
   return (
