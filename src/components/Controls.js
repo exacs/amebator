@@ -2,9 +2,12 @@ import React from "react";
 import Draggable from 'react-draggable';
 import "./Knob.css";
 
-function Knob({ x, y }) {
+function Knob({ x, y, onChange }) {
   function onDrag (e, position) {
-    console.log(position.x, position.y)
+    onChange({
+      x: position.x,
+      y: position.y
+    })
   }
 
   return (
@@ -17,7 +20,7 @@ function Knob({ x, y }) {
   );
 }
 
-export default function Controls({ circles }) {
+export default function Controls({ circles, moveCenter }) {
   return (
     <div
       style={{
@@ -28,8 +31,8 @@ export default function Controls({ circles }) {
         left: "1px",
       }}
     >
-      {circles.map((circle) => (
-        <Knob y={circle.y} x={circle.x} />
+      {circles.map((circle, i) => (
+        <Knob key={i} y={circle.y} x={circle.x} onChange={pos => moveCenter(i, pos)} />
       ))}
     </div>
   );
