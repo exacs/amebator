@@ -18,13 +18,20 @@ function Knob({ x, y, onChange }) {
 }
 
 function RadiusKnob ({ x, y, r, onChange }) {
-  const [position, setPosition] = useState({
-    x: x + r,
-    y: y
-  })
+  const [angle, setAngle] = useState(0)
 
-  function onDrag () {
+  function onDrag (e, position) {
+    const newRadius = Math.sqrt(
+      (x - position.x)**2 + (y - position.y)**2
+    )
+    const newAngle = Math.atan2(position.y - y, position.x - x)
+    setAngle(newAngle)
+    onChange(newRadius)
+  }
 
+  const position = {
+    x: x + r * Math.cos(angle),
+    y: y + r * Math.sin(angle)
   }
 
   return (
@@ -34,7 +41,7 @@ function RadiusKnob ({ x, y, r, onChange }) {
   )
 }
 
-export default function Controls({ circles, moveCenter }) {
+export default function Controls({ circles, moveCenter, changeRadius }) {
   return (
     <div
       style={{
@@ -59,6 +66,7 @@ export default function Controls({ circles, moveCenter }) {
           y={circle.y}
           x={circle.x}
           r={circle.r}
+          onChange={(r) => changeRadius(i, r)}
         />
       ))}
     </div>

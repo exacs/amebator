@@ -25,12 +25,23 @@ function App() {
     });
   }
 
+  function changeRadius(i, r) {
+    setData({
+      circles: replace(data.circles, i, {r}),
+      radii: data.radii
+    })
+  }
+
   return (
     <div className="Amebator">
       <div className="Amebator-canvas-container">
         <DebugCanvas data={data} />
         <Canvas data={data} />
-        <Controls circles={data.circles} moveCenter={moveCenter} />
+        <Controls
+          circles={data.circles}
+          moveCenter={moveCenter}
+          changeRadius={changeRadius}
+        />
       </div>
     </div>
   );
