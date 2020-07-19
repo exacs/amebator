@@ -1,17 +1,19 @@
 import React from "react";
+import Draggable from 'react-draggable';
 import "./Knob.css";
 
-function Knob({ top, left }) {
+function Knob({ x, y }) {
+  function onDrag (e, position) {
+    console.log(position.x, position.y)
+  }
+
   return (
-    <div
-      className="Knob"
-      style={{
-        top,
-        left,
-      }}
+    <Draggable
+      position={{x, y}}
+      onDrag={onDrag}
     >
       <div className="Knob-handler" />
-    </div>
+    </Draggable>
   );
 }
 
@@ -27,7 +29,7 @@ export default function Controls({ circles }) {
       }}
     >
       {circles.map((circle) => (
-        <Knob top={circle.y} left={circle.x} />
+        <Knob y={circle.y} x={circle.x} />
       ))}
     </div>
   );
