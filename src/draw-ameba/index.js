@@ -1,9 +1,9 @@
 import { intersection } from "./geometry.js";
 
-export function drawCircle (ctx, center, radius) {
-  ctx.beginPath()
-  ctx.arc(center[0], center[1], radius, 0, Math.PI * 2)
-  ctx.stroke()
+export function drawCircle(ctx, center, radius) {
+  ctx.beginPath();
+  ctx.arc(center[0], center[1], radius, 0, Math.PI * 2);
+  ctx.stroke();
 }
 
 export default function drawAmeba(ctx, circles, radii) {

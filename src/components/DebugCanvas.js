@@ -30,11 +30,11 @@ function useCanvas(callback) {
 export default function Canvas({ data }) {
   const canvasRef = useCanvas((ctx) => {
     ctx.strokeStyle = "white";
-    ctx.setLineDash([3, 3])
+    ctx.setLineDash([3, 3]);
 
     for (const circle of data.circles) {
       drawCircle(ctx, [circle.x, circle.y], circle.r);
-      ctx.stroke()
+      ctx.stroke();
     }
   });
 
@@ -43,7 +43,7 @@ export default function Canvas({ data }) {
       ref={canvasRef}
       width={500}
       height={500}
-      style={{ border: "1px solid white", position: 'absolute' }}
+      style={{ border: "1px solid white", position: "absolute" }}
     />
   );
 }

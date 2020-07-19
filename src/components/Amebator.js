@@ -4,8 +4,8 @@ import DebugCanvas from "./DebugCanvas";
 import Controls from "./Controls";
 import "./Amebator.css";
 
-function replace (arr, i, val) {
-  return arr.map((v, j) => i === j ? {...v, ...val} : v)
+function replace(arr, i, val) {
+  return arr.map((v, j) => (i === j ? { ...v, ...val } : v));
 }
 
 function App() {
@@ -16,13 +16,13 @@ function App() {
       { x: 100, y: 200, r: 40 },
     ],
     radii: [70, 30, 50],
-  })
+  });
 
-  function moveCenter (i, {x, y}) {
+  function moveCenter(i, { x, y }) {
     setData({
-      circles: replace(data.circles, i, {x, y}),
+      circles: replace(data.circles, i, { x, y }),
       radii: data.radii,
-    })
+    });
   }
 
   return (
