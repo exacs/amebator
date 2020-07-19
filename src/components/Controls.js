@@ -15,7 +15,7 @@ function Knob({ top, left }) {
   );
 }
 
-export default function Controls({ points }) {
+export default function Controls({ circles }) {
   return (
     <div
       style={{
@@ -26,8 +26,8 @@ export default function Controls({ points }) {
         left: "1px",
       }}
     >
-      {points.map((point, i) => (
-        <Knob key={i} id={i} top={point[1]} left={point[0]} />
+      {circles.map((circle) => (
+        <Knob top={circle.y} left={circle.x} />
       ))}
     </div>
   );

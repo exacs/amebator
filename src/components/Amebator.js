@@ -52,7 +52,7 @@ function App() {
     <div className="Amebator">
       <div className="Amebator-canvas-container">
         <Canvas data={data} />
-        <Controls points={points} movePoint={movePoint} />
+        <Controls circles={data.circles} movePoint={movePoint} />
       </div>
     </div>
   );
