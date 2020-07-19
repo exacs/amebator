@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Draggable from "react-draggable";
 import "./Knob.css";
 
@@ -15,6 +15,23 @@ function Knob({ x, y, onChange }) {
       <div className="Knob-handler" />
     </Draggable>
   );
+}
+
+function RadiusKnob ({ x, y, r, onChange }) {
+  const [position, setPosition] = useState({
+    x: x + r,
+    y: y
+  })
+
+  function onDrag () {
+
+  }
+
+  return (
+    <Draggable position={position} onDrag={onDrag}>
+      <div className='Knob-handler-2' />
+    </Draggable>
+  )
 }
 
 export default function Controls({ circles, moveCenter }) {
@@ -34,6 +51,14 @@ export default function Controls({ circles, moveCenter }) {
           y={circle.y}
           x={circle.x}
           onChange={(pos) => moveCenter(i, pos)}
+        />
+      ))}
+      {circles.map((circle, i) => (
+        <RadiusKnob
+          key={i}
+          y={circle.y}
+          x={circle.x}
+          r={circle.r}
         />
       ))}
     </div>

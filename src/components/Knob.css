@@ -11,3 +11,14 @@
   top: -8px;
   left: -8px;
 }
+
+.Knob-handler-2 {
+  position: absolute;
+  border: #e271e6 1px solid;
+
+  border-radius: 100%;
+  width: 14px;
+  height: 14px;
+  top: -8px;
+  left: -8px;
+}
