@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Canvas from "./Canvas";
+import DebugCanvas from "./DebugCanvas";
 import Controls from "./Controls";
 import "./Amebator.css";
 
@@ -27,6 +28,7 @@ function App() {
   return (
     <div className="Amebator">
       <div className="Amebator-canvas-container">
+        <DebugCanvas data={data} />
         <Canvas data={data} />
         <Controls circles={data.circles} moveCenter={moveCenter} />
       </div>
