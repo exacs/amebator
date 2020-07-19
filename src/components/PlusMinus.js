@@ -1,12 +1,22 @@
 import React from "react";
-import "./PlusMinus.css"
+import "./PlusMinus.css";
 
-export default function PlusMinus ({ amount, onSetAmount }) {
+export default function PlusMinus({ amount, onSetAmount }) {
   return (
     <div className="PlusMinus">
-      <button className="PlusMinus-button" onClick={() => onSetAmount(amount + 1)}>+</button>
+      <button
+        className="PlusMinus-button"
+        onClick={() => onSetAmount(amount + 1)}
+      >
+        +
+      </button>
       <div className="PlusMinus-value">{amount}</div>
-      <button className="PlusMinus-button" onClick={() => onSetAmount(amount - 1)}>–</button>
+      <button
+        className="PlusMinus-button"
+        onClick={() => onSetAmount(amount - 1)}
+      >
+        –
+      </button>
     </div>
-  )
+  );
 }

@@ -30,11 +30,7 @@ function useCanvas(callback) {
 export default function Canvas({ data }) {
   const canvasRef = useCanvas((ctx) => {
     ctx.strokeStyle = "white";
-    const result = drawAmeba(
-      ctx,
-      data.circles,
-      data.radii
-    );
+    const result = drawAmeba(ctx, data.circles, data.radii);
     if (result) {
       ctx.stroke();
     }

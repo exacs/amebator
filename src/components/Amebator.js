@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Canvas from "./Canvas";
 import Controls from "./Controls";
-import PlusMinus from "./PlusMinus"
-import Slider from "./Slider"
-import "./Amebator.css"
-
+import PlusMinus from "./PlusMinus";
+import Slider from "./Slider";
+import "./Amebator.css";
 
 function defaultPoints(amount) {
-  const increment = (Math.PI * 2) / (amount);
+  const increment = (Math.PI * 2) / amount;
   const points = [];
 
   // Range 250 +/- 100
@@ -21,8 +20,8 @@ function defaultPoints(amount) {
   return points;
 }
 
-function defaultRadii (amount) {
-  return Array.from({ length: amount }, _ => 50)
+function defaultRadii(amount) {
+  return Array.from({ length: amount }, (_) => 50);
 }
 
 function App() {
@@ -40,19 +39,13 @@ function App() {
     );
   }
 
-  function setAmountAndPoints(amount) {
-    setAmount(amount);
-    setPoints(defaultPoints(amount));
-    setRadii(defaultRadii(amount))
-  }
-
   const data = {
     circles: [
-      [80, 80, 50],
-      [220, 130, 70],
-      [100, 200, 40]
+      { x: 80, y: 80, r: 50 },
+      { x: 220, y: 130, r: 70 },
+      { x: 100, y: 200, r: 40 },
     ],
-    radii: [70, 30, 50]
+    radii: [70, 30, 50],
   };
 
   return (
@@ -61,10 +54,6 @@ function App() {
         <Canvas data={data} />
         <Controls points={points} movePoint={movePoint} />
       </div>
-      <section className="Amebator-control">
-        <div className="Amebator-control-title">Number of points:</div>
-        <PlusMinus onSetAmount={setAmountAndPoints} amount={amount} />
-      </section>
     </div>
   );
 }
