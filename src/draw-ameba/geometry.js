@@ -46,14 +46,14 @@ export function intersection(circle0, circle1, sign) {
  * @param {number} radius radius of the tangent
  * @return {Point} Center of the circle
  */
-export function getTangent(circle0, circle1, radius) {
+export function getTangent(circle0, circle1, radius, sign = true) {
   const radius0 = circle0.r + radius;
   const radius1 = circle1.r + radius;
 
   return intersection(
     { x: circle0.x, y: circle0.y, r: radius0 },
     { x: circle1.x, y: circle1.y, r: radius1 },
-    true
+    sign
   );
 }
 
