@@ -45,10 +45,15 @@ function TangentKnob({ circle0, circle1, radius, onChange }) {
     const d0 = getMinusRadius(position, circle0, circle0.r);
     const d1 = getMinusRadius(position, circle1, circle1.r);
 
-    onChange(Math.max(d0, d1));
+    const e0 = Math.atan2(circle0.y - position.y, circle0.x - position.x)
+    const e1 = Math.atan2(circle1.y - position.y, circle1.x - position.x)
+
+    const sign = e0 > e1 ? 1 : -1;
+
+    onChange(sign * Math.max(d0, d1));
   }
 
-  const center = getTangent(circle0, circle1, radius);
+  const center = getTangent(circle0, circle1, Math.abs(radius), radius > 0);
 
   return (
     <Draggable position={center} onDrag={onDrag}>
