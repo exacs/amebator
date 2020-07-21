@@ -72,7 +72,6 @@ export default function Controls({
 
     tangents.push({ circle0, circle1, radius });
   }
-  console.log(tangents[0]);
 
   return (
     <div
