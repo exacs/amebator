@@ -31,16 +31,13 @@ function defaultCircles(amount) {
 }
 
 function App() {
-  const [data, setData] = useState({
-    circles: [],
-    radii: [],
-  });
+  const [data, setData] = useState(generateData(2));
 
-  function setAmount(value) {
-    setData({
+  function generateData(value) {
+    return {
       circles: defaultCircles(value),
       radii: Array.from({ length: value }, (_) => 50),
-    });
+    };
   }
 
   function moveCenter(i, { x, y }) {
@@ -77,7 +74,10 @@ function App() {
         />
       </div>
       <div className="Amebator-control">
-        <PlusMinus amount={data.circles.length} onSetAmount={setAmount} />
+        <PlusMinus
+          amount={data.circles.length}
+          onSetAmount={(amount) => setData(generateData(amount))}
+        />
       </div>
     </div>
   );
