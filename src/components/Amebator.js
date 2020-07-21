@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import Canvas from "./Canvas";
 import DebugCanvas from "./DebugCanvas";
-import Controls from "./Controls";
+import CirclesEditor from "./CirclesEditor";
 import "./Amebator.css";
 
 function replace(arr, i, val) {
   return arr.map((v, j) => (i === j ? { ...v, ...val } : v));
+}
+
+function replace2(arr, i, val) {
+  return arr.map((v, j) => (i === j ? val : v));
 }
 
 function App() {
@@ -32,15 +36,23 @@ function App() {
     });
   }
 
+  function changeTangentRadius(i, r) {
+    setData({
+      circles: data.circles,
+      radii: replace2(data.radii, i, r),
+    });
+  }
+
   return (
     <div className="Amebator">
       <div className="Amebator-canvas-container">
         <DebugCanvas data={data} />
         <Canvas data={data} />
-        <Controls
-          circles={data.circles}
+        <CirclesEditor
+          data={data}
           moveCenter={moveCenter}
           changeRadius={changeRadius}
+          changeTangentRadius={changeTangentRadius}
         />
       </div>
     </div>

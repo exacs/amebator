@@ -53,7 +53,7 @@ export function getTangent(circle0, circle1, radius) {
   return intersection(
     { x: circle0.x, y: circle0.y, r: radius0 },
     { x: circle1.x, y: circle1.y, r: radius1 },
-    false
+    true
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Draggable from "react-draggable";
+import { getTangent, getMinusRadius } from "../draw-ameba/geometry";
 import "./Knob.css";
 
 function Knob({ x, y, onChange }) {
@@ -39,7 +40,40 @@ function RadiusKnob({ x, y, r, onChange }) {
   );
 }
 
-export default function Controls({ circles, moveCenter, changeRadius }) {
+function TangentKnob({ circle0, circle1, radius, onChange }) {
+  function onDrag(e, position) {
+    const d0 = getMinusRadius(position, circle0, circle0.r);
+    const d1 = getMinusRadius(position, circle1, circle1.r);
+
+    onChange(Math.max(d0, d1));
+  }
+
+  const center = getTangent(circle0, circle1, radius);
+
+  return (
+    <Draggable position={center} onDrag={onDrag}>
+      <div className="Knob-handler-2" />
+    </Draggable>
+  );
+}
+
+export default function Controls({
+  data: { circles, radii },
+  moveCenter,
+  changeRadius,
+  changeTangentRadius,
+}) {
+  const tangents = [];
+
+  for (let i = 0; i < circles.length; i++) {
+    const circle0 = circles[i];
+    const circle1 = circles[(i + 1) % circles.length];
+    const radius = radii[i];
+
+    tangents.push({ circle0, circle1, radius });
+  }
+  console.log(tangents[0]);
+
   return (
     <div
       style={{
@@ -65,6 +99,15 @@ export default function Controls({ circles, moveCenter, changeRadius }) {
           x={circle.x}
           r={circle.r}
           onChange={(r) => changeRadius(i, r)}
+        />
+      ))}
+      {tangents.map((t, i) => (
+        <TangentKnob
+          key={i}
+          circle0={t.circle0}
+          circle1={t.circle1}
+          radius={t.radius}
+          onChange={(r) => changeTangentRadius(i, r)}
         />
       ))}
     </div>

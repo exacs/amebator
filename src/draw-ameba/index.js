@@ -1,4 +1,4 @@
-import { intersection } from "./geometry.js";
+import { getTangent } from "./geometry.js";
 
 export function drawCircle(ctx, center, radius) {
   ctx.beginPath();
@@ -13,11 +13,7 @@ export default function drawAmeba(ctx, circles, radii) {
     const circle0 = circles[i];
     const circle1 = circles[(i + 1) % circles.length];
 
-    const point = intersection(
-      { ...circle0, r: circle0.r + radii[i] },
-      { ...circle1, r: circle1.r + radii[i] },
-      true
-    );
+    const point = getTangent(circle0, circle1, radii[i]);
 
     arcArgs.push(
       [circle0.x, circle0.y, circle0.r],
