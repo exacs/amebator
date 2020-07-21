@@ -22,3 +22,13 @@
   top: -8px;
   left: -8px;
 }
+
+.Knob-handler-3 {
+  position: absolute;
+  background: #0bdceb;
+  border-radius: 100%;
+  width: 16px;
+  height: 16px;
+  top: -8px;
+  left: -8px;
+}

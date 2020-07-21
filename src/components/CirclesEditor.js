@@ -52,7 +52,7 @@ function TangentKnob({ circle0, circle1, radius, onChange }) {
 
   return (
     <Draggable position={center} onDrag={onDrag}>
-      <div className="Knob-handler-2" />
+      <div className="Knob-handler-3" />
     </Draggable>
   );
 }

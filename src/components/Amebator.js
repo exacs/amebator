@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Canvas from "./Canvas";
 import DebugCanvas from "./DebugCanvas";
 import CirclesEditor from "./CirclesEditor";
+import PlusMinus from "./PlusMinus";
 import "./Amebator.css";
 
 function replace(arr, i, val) {
@@ -12,15 +13,35 @@ function replace2(arr, i, val) {
   return arr.map((v, j) => (i === j ? val : v));
 }
 
+function defaultCircles(amount) {
+  const increment = (Math.PI * 2) / amount;
+
+  const points = [];
+
+  // Range 250 +/- 100
+  for (let i = 0; i < amount; i++) {
+    points.push({
+      x: 250 + 100 * Math.cos(increment * i),
+      y: 250 + 100 * Math.sin(increment * i),
+      r: 50,
+    });
+  }
+
+  return points;
+}
+
 function App() {
   const [data, setData] = useState({
-    circles: [
-      { x: 80, y: 80, r: 50 },
-      { x: 220, y: 130, r: 70 },
-      { x: 100, y: 200, r: 40 },
-    ],
-    radii: [70, 30, 50],
+    circles: [],
+    radii: [],
   });
+
+  function setAmount (value) {
+    setData({
+      circles: defaultCircles(value),
+      radii: Array.from({ length: value }, _ => 50)
+    })
+  }
 
   function moveCenter(i, { x, y }) {
     setData({
@@ -53,6 +74,12 @@ function App() {
           moveCenter={moveCenter}
           changeRadius={changeRadius}
           changeTangentRadius={changeTangentRadius}
+        />
+      </div>
+      <div className="Amebator-control">
+        <PlusMinus
+          amount={data.circles.length}
+          onSetAmount={setAmount}
         />
       </div>
     </div>
