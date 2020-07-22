@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Canvas from "./canvas";
 import DebugCanvas from "./debug-canvas";
 import CirclesEditor from "./circles-editor";
 import PlusMinus from "./plus-minus";
 import "./amebator.css";
+import useAmebaState from "../hooks/use-ameba-state"
 
 function distance(c0, c1) {
   return Math.sqrt((c0.x - c1.x) ** 2 + (c0.y - c1.y) ** 2) - c0.r - c1.r;
@@ -35,7 +36,7 @@ function defaultCircles(amount) {
 }
 
 function App() {
-  const [data, setData] = useState(generateData(2));
+  const [data, setData] = useAmebaState(2);
 
   function updateCircles(circles) {
     // Update radii if needed
