@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Draggable from "react-draggable";
 import { getTangent, getMinusRadius } from "../draw-ameba/geometry";
-import "./Knob.css";
+import "./knob.css";
 
 function Knob({ x, y, onChange }) {
   function onDrag(e, position) {

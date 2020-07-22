@@ -1,5 +1,5 @@
 import React from "react";
-import "./PlusMinus.css";
+import "./plus-minus.css";
 
 export default function PlusMinus({ amount, onSetAmount }) {
   return (

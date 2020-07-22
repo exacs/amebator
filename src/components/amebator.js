@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Canvas from "./Canvas";
-import DebugCanvas from "./DebugCanvas";
-import CirclesEditor from "./CirclesEditor";
-import PlusMinus from "./PlusMinus";
-import "./Amebator.css";
+import Canvas from "./canvas";
+import DebugCanvas from "./debug-canvas";
+import CirclesEditor from "./circles-editor";
+import PlusMinus from "./plus-minus";
+import "./amebator.css";
 
 function distance(c0, c1) {
   return Math.sqrt((c0.x - c1.x) ** 2 + (c0.y - c1.y) ** 2) - c0.r - c1.r;

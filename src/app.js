@@ -1,6 +1,6 @@
 import React from "react";
-import "./App.css";
-import Amebator from "./components/Amebator";
+import "./app.css";
+import Amebator from "./components/amebator";
 
 export default function App() {
   return (
