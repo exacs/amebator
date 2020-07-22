@@ -4,11 +4,7 @@ import DebugCanvas from "./debug-canvas";
 import CirclesEditor from "./circles-editor";
 import PlusMinus from "./plus-minus";
 import "./amebator.css";
-import useAmebaState from "../hooks/use-ameba-state"
-
-function distance(c0, c1) {
-  return Math.sqrt((c0.x - c1.x) ** 2 + (c0.y - c1.y) ** 2) - c0.r - c1.r;
-}
+import useAmebaState from "../hooks/use-ameba-state";
 
 function replace(arr, i, val) {
   return arr.map((v, j) => (i === j ? { ...v, ...val } : v));
@@ -36,25 +32,7 @@ function defaultCircles(amount) {
 }
 
 function App() {
-  const { data, setData } = useAmebaState(2);
-
-  function updateCircles(circles) {
-    // Update radii if needed
-    const newRadii = [];
-
-    for (let i = 0; i < circles.length; i++) {
-      const minDiameter = distance(
-        circles[i],
-        circles[(i + 1) % circles.length]
-      );
-      const radius = Math.abs(data.radii[i]);
-      const sign = data.radii[i] > 0 ? 1 : -1;
-
-      newRadii.push(sign * Math.max(minDiameter / 2, radius));
-    }
-
-    setData({ circles, radii: newRadii });
-  }
+  const { data, setData, updateCircles } = useAmebaState(2);
 
   function generateData(value) {
     return {
