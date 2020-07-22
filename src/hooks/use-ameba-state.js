@@ -55,12 +55,16 @@ export function getFixedRadii(circles, radii) {
 export default function useAmebaState(size) {
   const [data, setData] = useState(generateData(size));
 
-  function updateCircles(circles) {
+  function setCircles(circles) {
     setData({
       circles,
       radii: getFixedRadii(circles, data.radii),
     });
   }
 
-  return { data, setData, updateCircles };
+  function setSize(size) {
+    setData(generateData(size));
+  }
+
+  return { data, setData, setCircles, setSize };
 }

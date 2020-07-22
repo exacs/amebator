@@ -14,39 +14,15 @@ function replace2(arr, i, val) {
   return arr.map((v, j) => (i === j ? val : v));
 }
 
-function defaultCircles(amount) {
-  const increment = (Math.PI * 2) / amount;
-
-  const points = [];
-
-  // Range 250 +/- 100
-  for (let i = 0; i < amount; i++) {
-    points.push({
-      x: 250 + 100 * Math.cos(increment * i),
-      y: 250 + 100 * Math.sin(increment * i),
-      r: 50,
-    });
-  }
-
-  return points;
-}
-
 function App() {
-  const { data, setData, updateCircles } = useAmebaState(2);
-
-  function generateData(value) {
-    return {
-      circles: defaultCircles(value),
-      radii: Array.from({ length: value }, (_) => 50),
-    };
-  }
+  const { data, setData, setCircles, setSize } = useAmebaState(2);
 
   function moveCenter(i, { x, y }) {
-    updateCircles(replace(data.circles, i, { x, y }));
+    setCircles(replace(data.circles, i, { x, y }));
   }
 
   function changeRadius(i, r) {
-    updateCircles(replace(data.circles, i, { r }));
+    setCircles(replace(data.circles, i, { r }));
   }
 
   function changeTangentRadius(i, r) {
@@ -71,7 +47,7 @@ function App() {
       <div className="Amebator-control">
         <PlusMinus
           amount={data.circles.length}
-          onSetAmount={(amount) => setData(generateData(amount))}
+          onSetAmount={(amount) => setSize(amount)}
         />
       </div>
     </div>
