@@ -5,6 +5,10 @@ import CirclesEditor from "./CirclesEditor";
 import PlusMinus from "./PlusMinus";
 import "./Amebator.css";
 
+function distance(c0, c1) {
+  return Math.sqrt((c0.x - c1.x) ** 2 + (c0.y - c1.y) ** 2) - c0.r - c1.r;
+}
+
 function replace(arr, i, val) {
   return arr.map((v, j) => (i === j ? { ...v, ...val } : v));
 }
@@ -33,6 +37,24 @@ function defaultCircles(amount) {
 function App() {
   const [data, setData] = useState(generateData(2));
 
+  function updateCircles(circles) {
+    // Update radii if needed
+    const newRadii = [];
+
+    for (let i = 0; i < circles.length; i++) {
+      const minDiameter = distance(
+        circles[i],
+        circles[(i + 1) % circles.length]
+      );
+      const radius = Math.abs(data.radii[i]);
+      const sign = data.radii[i] > 0 ? 1 : -1;
+
+      newRadii.push(sign * Math.max(minDiameter / 2, radius));
+    }
+
+    setData({ circles, radii: newRadii });
+  }
+
   function generateData(value) {
     return {
       circles: defaultCircles(value),
@@ -41,17 +63,11 @@ function App() {
   }
 
   function moveCenter(i, { x, y }) {
-    setData({
-      circles: replace(data.circles, i, { x, y }),
-      radii: data.radii,
-    });
+    updateCircles(replace(data.circles, i, { x, y }));
   }
 
   function changeRadius(i, r) {
-    setData({
-      circles: replace(data.circles, i, { r }),
-      radii: data.radii,
-    });
+    updateCircles(replace(data.circles, i, { r }));
   }
 
   function changeTangentRadius(i, r) {

@@ -13,7 +13,12 @@ export default function drawAmeba(ctx, circles, radii) {
     const circle0 = circles[i];
     const circle1 = circles[(i + 1) % circles.length];
 
-    const point = getTangent(circle0, circle1, Math.abs(radii[i]), radii[i] > 0);
+    const point = getTangent(
+      circle0,
+      circle1,
+      Math.abs(radii[i]),
+      radii[i] > 0
+    );
 
     arcArgs.push(
       [circle0.x, circle0.y, circle0.r],
