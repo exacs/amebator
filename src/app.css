@@ -1,41 +1,32 @@
-.App-nav-container {
-  height: 48px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.App-nav {
-  background-color: #181c22;
-  display: flex;
-  height: 100%;
-}
-
-.App-nav-link {
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.App-nav-link-selected {
-  background: #373c46;
-}
-
 .App {
   text-align: center;
 }
 
 .App-body {
-  min-height: calc(100vh - 64px);
-  padding-top: 64px;
+  min-height: 100vh;
   background-color: #282c34;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.Amebator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Amebator-canvas-container {
+  position: relative;
+}
+
+.Amebator-control {
+  width: 320px;
+  padding: 16px 0;
+}
+
+.Amebator-control-title {
+  font-weight: 700;
 }
