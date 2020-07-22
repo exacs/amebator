@@ -45,10 +45,10 @@ function TangentKnob({ circle0, circle1, radius, onChange }) {
     const d0 = getMinusRadius(position, circle0, circle0.r);
     const d1 = getMinusRadius(position, circle1, circle1.r);
 
-    const e0 = Math.atan2(circle0.y - position.y, circle0.x - position.x)
-    const e1 = Math.atan2(circle1.y - position.y, circle1.x - position.x)
+    const e0 = Math.atan2(position.y - circle0.y, position.x - circle0.x)
+    const e1 = Math.atan2(circle1.y - circle0.y, circle1.x - circle0.x)
 
-    const sign = e0 > e1 ? 1 : -1;
+    const sign = e0 < e1 ? 1 : -1;
 
     onChange(sign * Math.max(d0, d1));
   }
