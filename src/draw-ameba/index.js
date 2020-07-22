@@ -46,5 +46,5 @@ export default function drawAmeba(ctx, circles, radii) {
     ctx.arc(...arc);
   }
   ctx.closePath();
-  ctx.stroke();
+  // ctx.stroke();
 }

@@ -30,10 +30,31 @@ function useCanvas(callback) {
 export default function Canvas({ data }) {
   const canvasRef = useCanvas((ctx) => {
     ctx.strokeStyle = "white";
-    const result = drawAmeba(ctx, data.circles, data.radii);
-    if (result) {
-      ctx.stroke();
+
+    const colors = [
+      [255, 0, 0],
+      [255, 255, 0],
+      [0, 255, 0],
+      [0, 255, 255],
+      [0, 0, 255],
+      [255, 0, 255]
+    ]
+
+    drawAmeba(ctx, data.circles, data.radii);
+
+    for (let i = 0; i < data.circles.length; i++) {
+      const circle = data.circles[i];
+      const gradient = ctx.createRadialGradient(
+        circle.x, circle.y, 0, circle.x, circle.y, circle.r
+      );
+      const color = colors[i % colors.length]
+      gradient.addColorStop(0, `rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`)
+      gradient.addColorStop(1, `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0)`)
+      ctx.fillStyle = gradient
+      ctx.fill();
     }
+
+    ctx.stroke();
   });
 
   return (

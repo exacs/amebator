@@ -13,7 +13,7 @@ export default function App() {
     setCircleRadius,
     setCircleCenter,
     setTangentRadius,
-  } = useAmebaState(2);
+  } = useAmebaState(4);
 
   return (
     <main className="App-body">
