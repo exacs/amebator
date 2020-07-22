@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Canvas from "./components/canvas";
 import DebugCanvas from "./components/debug-canvas";
 import CirclesEditor from "./components/circles-editor";
 import PlusMinus from "./components/plus-minus";
+import Switch from "./components/switch"
 import useAmebaState from "./hooks/use-ameba-state";
 import "./app.css";
 
@@ -15,8 +16,15 @@ export default function App() {
     setTangentRadius,
   } = useAmebaState(4);
 
+  const [menu, setMenu] = useState('Geometry')
+
   return (
     <main className="App-body">
+      <Switch
+        options={['Geometry', 'Color']}
+        value={menu}
+        onChange={value => setMenu(value)}
+      />
       <div className="Amebator-canvas-container">
         <DebugCanvas data={data} />
         <Canvas data={data} />

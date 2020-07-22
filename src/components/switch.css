@@ -1,0 +1,20 @@
+.Switch {
+  display: flex;
+  width: 500px;
+  padding: 4px 0;
+}
+
+.Switch-option {
+  font-weight: 700;
+  flex: 1 0 0;
+  background: #393f4d;
+  border:none;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.Switch-active {
+  background: #e271e6;
+}
