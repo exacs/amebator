@@ -6,31 +6,14 @@ import PlusMinus from "./plus-minus";
 import "./amebator.css";
 import useAmebaState from "../hooks/use-ameba-state";
 
-function replace(arr, i, val) {
-  return arr.map((v, j) => (i === j ? { ...v, ...val } : v));
-}
-
-function replace2(arr, i, val) {
-  return arr.map((v, j) => (i === j ? val : v));
-}
-
 function App() {
-  const { data, setData, setCircles, setSize } = useAmebaState(2);
-
-  function moveCenter(i, { x, y }) {
-    setCircles(replace(data.circles, i, { x, y }));
-  }
-
-  function changeRadius(i, r) {
-    setCircles(replace(data.circles, i, { r }));
-  }
-
-  function changeTangentRadius(i, r) {
-    setData({
-      circles: data.circles,
-      radii: replace2(data.radii, i, r),
-    });
-  }
+  const {
+    data,
+    setSize,
+    setCircleRadius,
+    setCircleCenter,
+    setTangentRadius,
+  } = useAmebaState(2);
 
   return (
     <div className="Amebator">
@@ -39,9 +22,9 @@ function App() {
         <Canvas data={data} />
         <CirclesEditor
           data={data}
-          moveCenter={moveCenter}
-          changeRadius={changeRadius}
-          changeTangentRadius={changeTangentRadius}
+          moveCenter={setCircleCenter}
+          changeRadius={setCircleRadius}
+          changeTangentRadius={setTangentRadius}
         />
       </div>
       <div className="Amebator-control">

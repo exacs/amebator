@@ -4,6 +4,14 @@ function distance(c0, c1) {
   return Math.sqrt((c0.x - c1.x) ** 2 + (c0.y - c1.y) ** 2) - c0.r - c1.r;
 }
 
+function replaceObject(arr, i, val) {
+  return arr.map((v, j) => (i === j ? { ...v, ...val } : v));
+}
+
+function replaceValue(arr, i, val) {
+  return arr.map((v, j) => (i === j ? val : v));
+}
+
 /**
  * Return a list of "size" circles positioned around the point (250,250)
  *
@@ -66,5 +74,28 @@ export default function useAmebaState(size) {
     setData(generateData(size));
   }
 
-  return { data, setData, setCircles, setSize };
+  function setCircleCenter(i, { x, y }) {
+    setCircles(replaceObject(data.circles, i, { x, y }));
+  }
+
+  function setCircleRadius(i, r) {
+    setCircles(replaceObject(data.circles, i, { r }));
+  }
+
+  function setTangentRadius(i, r) {
+    setData({
+      circles: data.circles,
+      radii: replaceValue(data.radii, i, r),
+    });
+  }
+
+  return {
+    data,
+    setData,
+    setCircles,
+    setSize,
+    setCircleCenter,
+    setCircleRadius,
+    setTangentRadius,
+  };
 }
