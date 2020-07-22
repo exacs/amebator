@@ -40,15 +40,15 @@ function RadiusKnob({ x, y, r, onChange }) {
   );
 }
 
-function angleSign (angle) {
+function angleSign(angle) {
   if (-Math.PI <= angle && angle <= Math.PI) {
-    return angle < 0 ? -1 : 1
+    return angle < 0 ? -1 : 1;
   }
 
-  if (angle < - Math.PI) {
-    return angleSign(angle + 2 * Math.PI)
+  if (angle < -Math.PI) {
+    return angleSign(angle + 2 * Math.PI);
   } else {
-    return angleSign(angle - 2 * Math.PI)
+    return angleSign(angle - 2 * Math.PI);
   }
 }
 
