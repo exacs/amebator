@@ -40,6 +40,18 @@ function RadiusKnob({ x, y, r, onChange }) {
   );
 }
 
+function angleSign (angle) {
+  if (-Math.PI <= angle && angle <= Math.PI) {
+    return angle < 0 ? -1 : 1
+  }
+
+  if (angle < - Math.PI) {
+    return angleSign(angle + 2 * Math.PI)
+  } else {
+    return angleSign(angle - 2 * Math.PI)
+  }
+}
+
 function TangentKnob({ circle0, circle1, radius, onChange }) {
   function onDrag(e, position) {
     const d0 = getMinusRadius(position, circle0, circle0.r);
@@ -48,7 +60,7 @@ function TangentKnob({ circle0, circle1, radius, onChange }) {
     const e0 = Math.atan2(position.y - circle0.y, position.x - circle0.x);
     const e1 = Math.atan2(circle1.y - circle0.y, circle1.x - circle0.x);
 
-    const sign = e0 < e1 ? 1 : -1;
+    const sign = angleSign(e1 - e0);
 
     onChange(sign * Math.max(d0, d1));
   }
