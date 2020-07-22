@@ -36,7 +36,7 @@ function defaultCircles(amount) {
 }
 
 function App() {
-  const [data, setData] = useAmebaState(2);
+  const { data, setData } = useAmebaState(2);
 
   function updateCircles(circles) {
     // Update radii if needed

@@ -30,5 +30,7 @@ export function generateData(size) {
 }
 
 export default function useAmebaState (size) {
-  return useState(generateData(size))
+  const [data, useData] = useState(generateData(size))
+
+  return { data, useData }
 }
