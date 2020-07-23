@@ -2,7 +2,14 @@ import React from "react";
 import "./bookmark.css";
 
 export default function Bookmark({ data }) {
-  const value = window.location.href + "?" + btoa(JSON.stringify(data));
+  const value = [
+    window.location.protocol,
+    "//",
+    window.location.host,
+    window.location.pathname,
+    "?",
+    btoa(JSON.stringify(data)),
+  ].join("");
   const ref = React.createRef();
 
   function selectText() {
