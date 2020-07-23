@@ -4,9 +4,12 @@ import "./index.css";
 import App from "./app";
 import * as serviceWorker from "./serviceWorker";
 
+const data =
+  window.location.search && JSON.parse(atob(window.location.search.slice(1)));
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App data={data} />
   </React.StrictMode>,
   document.getElementById("root")
 );

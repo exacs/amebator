@@ -4,17 +4,18 @@ import DebugCanvas from "./components/debug-canvas";
 import CirclesEditor from "./components/circles-editor";
 import PlusMinus from "./components/plus-minus";
 import Switch from "./components/switch";
+import Bookmark from "./components/bookmark";
 import useAmebaState from "./hooks/use-ameba-state";
 import "./app.css";
 
-export default function App() {
+export default function App({ data: defaultData }) {
   const {
     data,
     setSize,
     setCircleRadius,
     setCircleCenter,
     setTangentRadius,
-  } = useAmebaState(4);
+  } = useAmebaState(defaultData, 4);
 
   const [menu, setMenu] = useState("Geometry");
 
@@ -42,6 +43,9 @@ export default function App() {
           amount={data.circles.length}
           onSetAmount={(amount) => setSize(amount)}
         />
+      </div>
+      <div className="Amebator-control">
+        <Bookmark data={data} />
       </div>
     </main>
   );
